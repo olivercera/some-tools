@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Redirections</title>
+    <script src="//handsontable.com/dist/handsontable.full.js"></script>
+    <link rel="stylesheet" media="screen" href="//handsontable.com/dist/handsontable.full.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="./lib/handsontable/ngHandsontable.min.js"></script>
+    <script src="./js/app.js"></script>
+    <!--
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    -->
+  </head>
+  
+  <body>
+    <div ng-app="redirectApp" data-ng-controller="rController as ctrl">
+      <h1> .htaccess redirect rules  </h1>
+      
+      <label> A to B, then to C <input type="checkbox" ng-model="ctrl.activateDest2" ng-click="ctrl.onClickDest2()"  /></label>
+      
+      <button ng-click="ctrl.processData()"> Generate Rules </button>
+      
+      <hot-table
+        datarows="ctrl.items"
+        settings="ctrl.settings"
+        row-headers="ctrl.rowHeaders"
+        col-headers="ctrl.colHeaders"
+        >
+        <hot-column ng-repeat="column in ctrl.columns" data="{{column.data}}" title="column.title" read-only="column.readOnly"></hot-column>
+      </hot-table>
+    </div>
+  </body>
+
+
+</html>
