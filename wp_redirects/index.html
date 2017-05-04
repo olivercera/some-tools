@@ -28,6 +28,11 @@
         >
         <hot-column ng-repeat="column in ctrl.columns" data="{{column.data}}" title="column.title" read-only="column.readOnly"></hot-column>
       </hot-table>
+      
+      
+      <textarea ng-show="ctrl.result" cols="160" rows="15">{{ctrl.result}}</textarea>
+      
+      
     </div>
   </body>
 

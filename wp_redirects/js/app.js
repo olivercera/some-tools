@@ -11,6 +11,8 @@ app.controller('rController', function($scope){
     contextMenu: true
   };
   
+  this.result = null;
+  
   this.columns = [
     {
       data: 'source',
@@ -21,7 +23,13 @@ app.controller('rController', function($scope){
       data: 'dest1',
       title: 'Destination',
       readOnly: false
+    },
+    {
+      data: 'dest2',
+      title: 'Final Destination',
+      readOnly: false
     }
+    
   ];
   
   this.activateDest2 = false;
@@ -35,27 +43,35 @@ app.controller('rController', function($scope){
   };
   
   this.processData = function(){
-    
+       
     var result = '';
     
     angular.forEach(this.items, function(item){
       
       
       result += 'Redirect 301 ';
-      result += item.source + ' ';
+      result += removeDomain(item.source) + ' ';
       result += item.dest1;
       result += '\n';
       
-      if(false){
+      if(typeof item.dest2 != 'undefined'){
         result += 'Redirect 301 ';
-        result += item.dest1 + ' ';
+        result += removeDomain(item.dest1) + ' ';
         result += item.dest2;
         result += '\n';
       }
       
     });
     
+    this.result = result;
+    
     console.log(result);
+  };
+  
+  var removeDomain = function(url){
+  	
+  	return url.replace(/https?:\/\/[^\/]+/i, "");
+  	  	
   };
   
   
